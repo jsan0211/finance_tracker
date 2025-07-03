@@ -1,0 +1,79 @@
+import datetime
+import random
+import string
+
+# def set_save_location():
+
+def write_log(log_name, log_entry):
+    with open(log_name, "w") as file:
+
+def generate_random_key():
+    characters = string.ascii_letters + string.digits + string.punctuation
+    purchase_id = ''.join(random.choices(characters, k=16))
+    return purchase_id
+
+def create_categories():
+    categories_list = []
+    if len(categories_list) == 0:
+        create_categories = input("You have not set your categories do you want to create one or use default? Enter C or D: ")
+        create_categories.lower()
+        if create_categories == "c":
+            enter_categories = input("Enter your categories seperated by commas: ")
+            enter_categories = enter_categories.split(",")
+            for word in enter_categories:
+                word = word.strip().lower()
+                categories_list.append(word)
+            return categories_list
+        elif create_categories == "d":
+            categories_list = [
+                "Rent/Mortgage",
+                "Utilities (Electricity, Gas, Water)",
+                "Groceries",
+                "Dining Out",
+                "Transportation (Gas, Public Transit, Parking)",
+                "Entertainment (Movies, concerts, etc.)",
+                "Healthcare (Doctor visits, medications)",
+                "Insurance (Health, car, renters/homeowners)",
+                "Taxes",
+                "Clothing",
+                "Personal Care (Haircuts, toiletries)",
+                "Education (Tuition, books, online courses)",
+                "Travel",
+                "Gifts",
+                "Donations",
+                "Debt Payments (Credit cards, loans)",
+                "Savings",
+                "Investments",
+                "Income (Salary, freelance, etc.)",
+                "Other"
+            ]
+            return categories_list
+        else:
+            print("Please select a valid option. Enter C for create or D for default categories.")
+    else:
+        return categories_list # should have probably been a while loop to have the user go back and make valid selection
+    
+def select_category(categories_list):
+    for index, category in enumerate(categories_list):
+        print(f"{index}. {category}")
+    selected_index = int(input("select a category from the list by number. Example: 1 "))
+    return categories_list[selected_index]
+
+def log_purchases(purchase_id, selected_index):
+    location = input("Where was the purchase made?: ")
+    amount = input("How much was the purchase?: ")
+    amount = float(amount)
+    category = select_category(categories_list)
+    date_time = datetime.datetime.now()
+
+    
+    # return a dictionary to use in write_log()
+    log = {
+        "Purchase ID": purchase_id,
+        "Date/Time": date_time,
+        "Category": category,
+        "Amount": amount,
+        "location": location,
+    }
+
+# def main():
